@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Colors</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 10px;
+            color: #333;
+            flex-shrink: 0;
+        }
+
+        .colors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+            gap: 10px;
+            flex-grow: 1;
+            padding: 5px;
+            height: calc(100% - 60px);
+        }
+
+        .color {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            user-select: none;
+            height: 100%;
+            width: 100%;
+            padding: 5px;
+            text-align: center;
+            overflow: hidden;
+            /* Reducido en 10% de 100px */
+            min-height: 90px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .color-circle {
+            /* Reducido en 10% de 60px */
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            margin-bottom: 5px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .word {
+            /* TAMAÑO DE LAS PALABRAS: Incrementado en 20% */
+            font-size: clamp(1.68rem, 5.04vw, 3.024rem);
+            width: 100%;
+            overflow-wrap: break-word;
+            hyphens: auto;
+            padding: 0 2px;
+            line-height: 1.2;
+        }
+
+        .color:hover {
+            transform: scale(1.1);
+        }
+
+        .color:active {
+            transform: scale(0.95);
+        }
+
+        /* Color-specific styles */
+        [data-color="blue"] { background: #2979FF; }
+        [data-color="blue"] .color-circle { background: blue; }
+        
+        [data-color="black"] { background: #424242; }
+        [data-color="black"] .color-circle { background: black; }
+        
+        [data-color="brown"] { background: #795548; }
+        [data-color="brown"] .color-circle { background: brown; }
+        
+        [data-color="green"] { background: #00E676; }
+        [data-color="green"] .color-circle { background: green; }
+        
+        [data-color="orange"] { background: #FF9100; }
+        [data-color="orange"] .color-circle { background: orange; }
+        
+        [data-color="pink"] { background: #FF4081; }
+        [data-color="pink"] .color-circle { background: pink; }
+        
+        [data-color="white"] { 
+            background: #FFFFFF; 
+            color: #333;
+        }
+        [data-color="white"] .color-circle { 
+            background: white;
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        [data-color="red"] { background: #FF1744; }
+        [data-color="red"] .color-circle { background: red; }
+        
+        [data-color="yellow"] { background: #FFD600; }
+        [data-color="yellow"] .color-circle { background: yellow; }
+        
+        [data-color="gray"] { background: #9E9E9E; }
+        [data-color="gray"] .color-circle { background: gray; }
+
+        @media (max-width: 480px) {
+            .colors-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 5px;
+                padding: 5px;
+            }
+
+            .color {
+                padding: 5px 2px;
+                /* Reducido en 10% de 80px */
+                min-height: 72px;
+            }
+
+            .color-circle {
+                /* Reducido en 10% de 40px */
+                width: 36px;
+                height: 36px;
+                margin-bottom: 2px;
+            }
+
+            .word {
+                /* TAMAÑO DE LAS PALABRAS EN MÓVIL: Incrementado en 20% de los valores previos */
+                font-size: clamp(1.344rem, 4.2vw, 2.016rem);
+                line-height: 1.1;
+            }
+            
+            .container {
+                padding: 5px;
+            }
+
+            .title {
+                margin-bottom: 5px;
+                font-size: clamp(1.2rem, 4vw, 1.8rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h2 class="title">😉 Colors in English 😍</h2>
+        </div>
+        <div class="colors-grid">
+            <div class="color" data-color="blue">
+                <div class="color-circle"></div>
+                <div class="word">Blue</div>
+            </div>
+            <div class="color" data-color="black">
+                <div class="color-circle"></div>
+                <div class="word">Black</div>
+            </div>
+            <div class="color" data-color="brown">
+                <div class="color-circle"></div>
+                <div class="word">Brown</div>
+            </div>
+            <div class="color" data-color="green">
+                <div class="color-circle"></div>
+                <div class="word">Green</div>
+            </div>
+            <div class="color" data-color="orange">
+                <div class="color-circle"></div>
+                <div class="word">Orange</div>
+            </div>
+            <div class="color" data-color="pink">
+                <div class="color-circle"></div>
+                <div class="word">Pink</div>
+            </div>
+            <div class="color" data-color="white">
+                <div class="color-circle"></div>
+                <div class="word">White</div>
+            </div>
+            <div class="color" data-color="red">
+                <div class="color-circle"></div>
+                <div class="word">Red</div>
+            </div>
+            <div class="color" data-color="yellow">
+                <div class="color-circle"></div>
+                <div class="word">Yellow</div>
+            </div>
+            <div class="color" data-color="gray">
+                <div class="color-circle"></div>
+                <div class="word">Gray</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Inicializar el sintetizador de voz
+        const synth = window.speechSynthesis;
+        let voices = [];
+
+        // Control de reproducción
+        const playingColors = new Set();
+
+        // Función para cargar las voces
+        function loadVoices() {
+            voices = synth.getVoices();
+            console.log('Voces disponibles:', voices.map(v => `${v.name} (${v.lang})`));
+        }
+
+        // Cargar voces cuando estén disponibles
+        loadVoices();
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+
+        document.querySelectorAll('.color').forEach(color => {
+            color.addEventListener('click', () => {
+                const colorName = color.dataset.color;
+                
+                // Si el color ya está siendo reproducido, ignorar el clic
+                if (playingColors.size > 0) {
+                    console.log('Hay una reproducción en curso, ignorando clic');
+                    return;
+                }
+                
+                console.log('Reproduciendo color:', colorName);
+                playingColors.add(colorName);
+                
+                // Deshabilitar visualmente todos los colores durante la reproducción
+                document.querySelectorAll('.color').forEach(c => {
+                    c.style.opacity = '0.6';
+                    c.style.cursor = 'default';
+                });
+                // Mantener el color actual visible
+                color.style.opacity = '1';
+                
+                // Crear y configurar la voz
+                const utterance = new SpeechSynthesisUtterance(colorName);
+                utterance.lang = 'en-US';
+                utterance.volume = 1;
+                utterance.rate = 0.8;
+                
+                // Configurar el evento para cuando termine la pronunciación
+                utterance.onend = () => {
+                    playingColors.delete(colorName);
+                    // Restaurar la apariencia de todos los colores
+                    document.querySelectorAll('.color').forEach(c => {
+                        c.style.opacity = '1';
+                        c.style.cursor = 'pointer';
+                    });
+                };
+                
+                // Buscar una voz femenina en inglés
+                const femaleVoice = voices.find(voice => 
+                    voice.lang.includes('en') && voice.name.toLowerCase().includes('female'));
+                
+                if (femaleVoice) {
+                    utterance.voice = femaleVoice;
+                }
+                
+                try {
+                    // Intentar reproducir la voz
+                    synth.speak(utterance);
+                    
+                    // También intentar reproducir el archivo de audio si existe
+                    const audio = new Audio(`sounds/${colorName.toLowerCase()}.mp3`);
+                    audio.onerror = (e) => {
+                        console.log('Error al cargar el archivo de audio:', e);
+                        playingColors.delete(colorName);
+                        // Restaurar la apariencia de todos los colores
+                        document.querySelectorAll('.color').forEach(c => {
+                            c.style.opacity = '1';
+                            c.style.cursor = 'pointer';
+                        });
+                    };
+                    
+                    // Cuando el audio termine, eliminar el color del conjunto de reproducción
+                    audio.onended = () => {
+                        playingColors.delete(colorName);
+                        // Restaurar la apariencia de todos los colores
+                        document.querySelectorAll('.color').forEach(c => {
+                            c.style.opacity = '1';
+                            c.style.cursor = 'pointer';
+                        });
+                    };
+                    
+                    audio.play().catch(e => {
+                        console.log('Error al reproducir el audio:', e);
+                        playingColors.delete(colorName);
+                        // Restaurar la apariencia de todos los colores
+                        document.querySelectorAll('.color').forEach(c => {
+                            c.style.opacity = '1';
+                            c.style.cursor = 'pointer';
+                        });
+                    });
+                } catch (error) {
+                    console.error('Error al reproducir sonido:', error);
+                    playingColors.delete(colorName);
+                    // Restaurar la apariencia de todos los colores
+                    document.querySelectorAll('.color').forEach(c => {
+                        c.style.opacity = '1';
+                        c.style.cursor = 'pointer';
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
