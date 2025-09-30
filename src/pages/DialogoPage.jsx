@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import dialogo from "../assets/dialogo_track 33.mp3"; // si importaste el mp3 con Vite/CRA
+import dialogoPDF from "../assets/dialogo-page37.pdf"; // si importaste el pdf con Vite/CRA
 
 export default function DialogoPage() {
   const audioRef = useRef(null);
@@ -64,7 +65,7 @@ export default function DialogoPage() {
       {/* PDF embed */}
       <div className="mb-2 h-[70vh] w-full">
         <iframe
-          src="https://drive.google.com/file/d/1cBb7XAJEa2hwAqPTWsB5gSTbWye5iX70/preview"
+          src={dialogoPDF}
           className="px h-screen w-full"
           title="Diálogo PDF"
         ></iframe>
