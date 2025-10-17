@@ -273,7 +273,7 @@
         }
 
         document.querySelectorAll('.letter').forEach(letter => {
-            letter.addEventListener('click', () => {
+            letter.addEventListener('click', async () => {
                 const letterSound = letter.dataset.letter.toLowerCase();
                 
                 // Si cualquier letra está siendo reproducida, ignorar el clic
@@ -330,21 +330,27 @@
                     synth.speak(utterance);
                     
                     // También intentar reproducir el archivo de audio si existe
-                    const audio = new Audio(`sounds/${letterSound}.mp3`);
-                    audio.onerror = (e) => {
-                        console.log('Error al cargar el archivo de audio:', e);
+                    const audioUrl = `sounds/${letterSound}.mp3`;
+                    try {
+                        const head = await fetch(audioUrl, { method: 'HEAD' });
+                        if (head.ok) {
+                            const audio = new Audio(audioUrl);
+                            audio.onerror = (e) => {
+                                console.log('Error al cargar el archivo de audio:', e);
+                                playingLetters.delete(letterSound);
+                            };
+                            audio.onended = () => {
+                                playingLetters.delete(letterSound);
+                            };
+                            audio.play().catch(e => {
+                                console.log('Error al reproducir el audio:', e);
+                                playingLetters.delete(letterSound);
+                            });
+                        }
+                    } catch (err) {
+                        console.log('No hay audio disponible:', err);
                         playingLetters.delete(letterSound);
-                    };
-                    
-                    // Cuando el audio termine, eliminar la letra del conjunto de reproducción
-                    audio.onended = () => {
-                        playingLetters.delete(letterSound);
-                    };
-                    
-                    audio.play().catch(e => {
-                        console.log('Error al reproducir el audio:', e);
-                        playingLetters.delete(letterSound);
-                    });
+                    }
                 } catch (error) {
                     console.error('Error al reproducir sonido:', error);
                     playingLetters.delete(letterSound);

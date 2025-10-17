@@ -88,12 +88,18 @@ export default function Numbers() {
     try {
       // import.meta.env.BASE_URL points to the Vite `base` config (e.g. '/aula-de-ingles/')
       const base = import.meta.env.BASE_URL || "/";
-      const audio = new Audio(`${base}sounds/${word.toLowerCase()}.mp3`);
-      audio.onended = () => setPlaying(null);
-      audio.onerror = () => setPlaying(null);
-      await audio.play();
-    } catch {
-      // Si falla el audio, solo usa la voz
+      const url = `${base}sounds/${word.toLowerCase()}.mp3`;
+      // Check resource exists before attempting to play to avoid 404s in console
+      const res = await fetch(url, { method: "HEAD" });
+      if (res.ok) {
+        const audio = new Audio(url);
+        audio.onended = () => setPlaying(null);
+        audio.onerror = () => setPlaying(null);
+        await audio.play();
+      }
+    } catch (e) {
+      // If checking or playback fails, ignore and rely on speechSynthesis
+      // console.debug('audio not found or playable', e);
     }
   };
 

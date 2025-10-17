@@ -1,6 +1,11 @@
 import { DarkThemeToggle } from "flowbite-react";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  HashRouter,
+} from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
 import NavBar from "./components/NavBar.jsx";
@@ -14,7 +19,8 @@ import Dialogos from "./pages/Dialogos.jsx";
 export default function App() {
   return (
     // Use Vite base so BrowserRouter works when deployed to a subpath (GitHub Pages)
-    <Router basename={import.meta.env.BASE_URL}>
+    // <Router basename={import.meta.env.BASE_URL}>
+    <HashRouter>
       <NavBar />
       <main className="flex flex-col bg-white px-4 py-4 dark:bg-gray-900 dark:text-white">
         <DarkThemeToggle className="absolute right-4 bottom-4" />
@@ -31,6 +37,7 @@ export default function App() {
           {/* Añade más rutas según necesites */}
         </Routes>
       </main>
-    </Router>
+    </HashRouter>
+    // </Router>
   );
 }
