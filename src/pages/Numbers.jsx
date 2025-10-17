@@ -86,7 +86,9 @@ export default function Numbers() {
 
     // Intentar reproducir archivo de audio si existe
     try {
-      const audio = new Audio(`/sounds/${word.toLowerCase()}.mp3`);
+      // import.meta.env.BASE_URL points to the Vite `base` config (e.g. '/aula-de-ingles/')
+      const base = import.meta.env.BASE_URL || "/";
+      const audio = new Audio(`${base}sounds/${word.toLowerCase()}.mp3`);
       audio.onended = () => setPlaying(null);
       audio.onerror = () => setPlaying(null);
       await audio.play();

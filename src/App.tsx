@@ -13,7 +13,8 @@ import Dialogos from "./pages/Dialogos.jsx";
 
 export default function App() {
   return (
-    <Router>
+    // Use Vite base so BrowserRouter works when deployed to a subpath (GitHub Pages)
+    <Router basename={import.meta.env.BASE_URL}>
       <NavBar />
       <main className="flex flex-col bg-white px-4 py-4 dark:bg-gray-900 dark:text-white">
         <DarkThemeToggle className="absolute right-4 bottom-4" />
